@@ -13,7 +13,7 @@ Este proyecto convierte etiquetas en formato **ZPL (Zebra Programming Language)*
 
 ## 📦 Dependencias
 
-- [Fork personalizado de zebrash](https://github.com/lroentgenoil/zebrash)
+- [Fork personalizado de zebrash](https://github.com/lroentgenoil/zebrashMod)
 - [gofpdf](https://github.com/jung-kurt/gofpdf)
 
 ## 📋 Parámetros
