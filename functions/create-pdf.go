@@ -5,7 +5,7 @@ import (
 	"github.com/phpdave11/gofpdf"
 )
 
-func newPDF(params elements.FormattedParams) *gofpdf.Fpdf {
+func NewPDF(params elements.FormattedParams) *gofpdf.Fpdf {
 	if params.Mosaico {
 		return gofpdf.New(params.Orientacion, "mm", params.TipoPapel, "")
 	}

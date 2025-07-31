@@ -8,7 +8,7 @@ import (
 	"github.com/phpdave11/gofpdf"
 )
 
-func addOutput(pdf *gofpdf.Fpdf, result interface{}, params elements.FormattedParams, loteIndex int) (interface{}, error) {
+func AddOutput(pdf *gofpdf.Fpdf, result interface{}, params elements.FormattedParams, loteIndex int) (interface{}, error) {
 	switch params.Output {
 	case "file":
 		fileName := fmt.Sprintf(params.UrlOutput+"lote_%05d.pdf", loteIndex)

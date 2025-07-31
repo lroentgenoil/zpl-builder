@@ -42,7 +42,7 @@ func PDFOutput(res []zebrashElements.LabelInfo, params elements.FormattedParams,
 		result = [][]byte{}
 	}
 
-	pdf := functions.newPDF(params)
+	pdf := functions.NewPDF(params)
 
 	for idx, label := range res {
 		buf := &bytes.Buffer{}
@@ -59,16 +59,16 @@ func PDFOutput(res []zebrashElements.LabelInfo, params elements.FormattedParams,
 		}
 
 		if (idx+1)%lote == 0 && idx != len(res)-1 {
-			result, err = functions.addOutput(pdf, result, params, loteIndex)
+			result, err = functions.AddOutput(pdf, result, params, loteIndex)
 			if err != nil {
 				return err
 			}
 			loteIndex++
-			pdf = functions.newPDF(params)
+			pdf = functions.NewPDF(params)
 		}
 	}
 
-	result, err := functions.addOutput(pdf, result, params, loteIndex)
+	result, err := functions.AddOutput(pdf, result, params, loteIndex)
 	if err != nil {
 		return err
 	}
