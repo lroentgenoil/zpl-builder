@@ -2,6 +2,7 @@ package handle
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -10,24 +11,39 @@ import (
 	zebrashElements "github.com/lroentgenoil/zebrashMod/elements"
 	"github.com/lroentgenoil/zpl-builder/elements"
 	"github.com/lroentgenoil/zpl-builder/functions"
-	"github.com/phpdave11/gofpdf"
 )
 
 func PDFOutput(res []zebrashElements.LabelInfo, params elements.FormattedParams, opts drawers.DrawerOptions) error {
-	var pdf *gofpdf.Fpdf
-	if params.Mosaico {
-		pdf = gofpdf.New(params.Orientacion, "mm", params.TipoPapel, "")
-	} else {
-		pdf = gofpdf.NewCustom(&gofpdf.InitType{
-			UnitStr: "mm",
-			Size: gofpdf.SizeType{
-				Wd: params.LabelWidth,
-				Ht: params.LabelHeight,
-			},
-		})
+	lote := 10000
+	Mnumber := params.Filas * params.Columnas
+	switch Mnumber {
+	case 1:
+		lote = 10000
+	case 3:
+		lote = 10002
+	case 4:
+		lote = 10004
+	case 5:
+		lote = 10005
+	case 14:
+		lote = 10010
+	case 44:
+		lote = 10032
 	}
+	loteIndex := 0
 
 	drawer := zebrash.NewDrawer()
+
+	var result interface{}
+	switch params.Output {
+	case "file":
+		result = []string{}
+	default:
+		result = [][]byte{}
+	}
+
+	pdf := functions.newPDF(params)
+
 	for idx, label := range res {
 		buf := &bytes.Buffer{}
 		err := drawer.DrawLabelAsPng(label, buf, opts)
@@ -41,14 +57,28 @@ func PDFOutput(res []zebrashElements.LabelInfo, params elements.FormattedParams,
 		} else {
 			functions.AddPage(pdf, buf, idx, params.LabelWidth, params.LabelHeight)
 		}
+
+		if (idx+1)%lote == 0 && idx != len(res)-1 {
+			result, err = functions.addOutput(pdf, result, params, loteIndex)
+			if err != nil {
+				return err
+			}
+			loteIndex++
+			pdf = functions.newPDF(params)
+		}
 	}
 
-	buf := &bytes.Buffer{}
-	err := pdf.Output(buf)
+	result, err := functions.addOutput(pdf, result, params, loteIndex)
 	if err != nil {
-		return fmt.Errorf("error generando PDF: %w", err)
+		return err
 	}
 
-	_, err = os.Stdout.Write(buf.Bytes())
+	data, err := json.Marshal(result)
+	if err != nil {
+		return fmt.Errorf("error generando Json: %w", err)
+	}
+
+	_, err = os.Stdout.Write(data)
+
 	return err
 }

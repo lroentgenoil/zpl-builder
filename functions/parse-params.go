@@ -66,6 +66,12 @@ func ParseInputParams(inputBytes []byte) (elements.FormattedParams, error) {
 				return elements.FormattedParams{}, errors.New("error al convertir MarginY")
 			}
 		}
+
+	}
+
+	formatData.Output = strings.ToLower(raw.Output)
+	if formatData.Output == "file" {
+		formatData.UrlOutput = raw.UrlOutput
 	}
 
 	formatData.ZPL = []byte(raw.ZPL)
@@ -83,4 +89,6 @@ func initParams(params *elements.FormattedParams) {
 	params.MarginX = 0
 	params.MarginY = 0
 	params.Mosaico = false
+	params.Output = "binary"
+	params.UrlOutput = "./"
 }

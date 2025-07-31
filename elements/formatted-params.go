@@ -14,4 +14,6 @@ type FormattedParams struct {
 	TipoPapel   string
 	Mosaico     bool
 	Orientacion string
+	Output      string
+	UrlOutput   string
 }

@@ -14,4 +14,6 @@ type InputParams struct {
 	TipoPapel   string `json:"tipoPapel"`
 	Mosaico     string `json:"mosaico"`
 	Orientacion string `json:"orientacion"`
+	Output      string `json:"output"`
+	UrlOutput   string `json:"urlOutput"`
 }

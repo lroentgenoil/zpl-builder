@@ -35,7 +35,7 @@ func main() {
 	case "pdf":
 		err = handle.PDFOutput(res, params, opts)
 	default:
-		err = handle.ImageOutput(res, opts)
+		err = handle.ImageOutput(res, params, opts)
 	}
 
 	exitWithError(err)
