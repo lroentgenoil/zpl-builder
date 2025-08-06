@@ -1,4 +1,4 @@
-package functions
+package pdfFunctions
 
 import (
 	"github.com/lroentgenoil/zpl-builder/elements"

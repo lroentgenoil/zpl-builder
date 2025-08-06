@@ -67,6 +67,15 @@ func ParseInputParams(inputBytes []byte) (elements.FormattedParams, error) {
 			}
 		}
 
+		formatData.Chunk, err = strconv.Atoi(raw.Chunk)
+		if err != nil {
+			return elements.FormattedParams{}, errors.New("error al convertir Chunk")
+		}
+
+		formatData.Comprimir, err = strconv.ParseBool(raw.Comprimir)
+		if err != nil {
+			return elements.FormattedParams{}, errors.New("error al convertir Comprimir")
+		}
 	}
 
 	formatData.Output = strings.ToLower(raw.Output)
@@ -84,11 +93,13 @@ func initParams(params *elements.FormattedParams) {
 	params.LabelHeight = 0
 	params.Dpmm = 0
 	params.Formato = "jpg"
-	params.Filas = 0
-	params.Columnas = 0
+	params.Filas = 1
+	params.Columnas = 1
+	params.Mosaico = false
 	params.MarginX = 0
 	params.MarginY = 0
-	params.Mosaico = false
+	params.Chunk = 1000
 	params.Output = "binary"
 	params.UrlOutput = "./"
+	params.Comprimir = false
 }

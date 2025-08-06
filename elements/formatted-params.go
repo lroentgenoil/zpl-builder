@@ -9,11 +9,13 @@ type FormattedParams struct {
 	Formato     string
 	Filas       int
 	Columnas    int
+	Mosaico     bool
 	MarginX     float64
 	MarginY     float64
+	Chunk       int
 	TipoPapel   string
-	Mosaico     bool
 	Orientacion string
 	Output      string
 	UrlOutput   string
+	Comprimir   bool
 }

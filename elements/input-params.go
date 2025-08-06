@@ -9,11 +9,13 @@ type InputParams struct {
 	ZPL         string `json:"zpl"`
 	Filas       string `json:"filas"`
 	Columnas    string `json:"columnas"`
+	Mosaico     string `json:"mosaico"`
 	MarginX     string `json:"marginX"`
 	MarginY     string `json:"marginY"`
+	Chunk       string `json:"chunk"`
 	TipoPapel   string `json:"tipoPapel"`
-	Mosaico     string `json:"mosaico"`
 	Orientacion string `json:"orientacion"`
 	Output      string `json:"output"`
 	UrlOutput   string `json:"urlOutput"`
+	Comprimir   string `json:"comprimir"`
 }

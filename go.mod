@@ -3,6 +3,7 @@ module github.com/lroentgenoil/zpl-builder
 go 1.24.4
 
 require (
+	github.com/disintegration/imaging v1.6.2
 	github.com/lroentgenoil/zebrashMod v0.0.0-20250724185655-d423c49f4b18
 	github.com/phpdave11/gofpdf v1.4.3
 )
