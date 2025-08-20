@@ -4,7 +4,7 @@ go 1.24.4
 
 require (
 	github.com/disintegration/imaging v1.6.2
-	github.com/lroentgenoil/zebrashMod v1.0.1
+	github.com/lroentgenoil/zebrashMod v1.2.0
 	github.com/phpdave11/gofpdf v1.4.3
 )
 

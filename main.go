@@ -12,7 +12,8 @@ import (
 )
 
 func main() {
-	inputBytes, _ := io.ReadAll(os.Stdin)
+	inputBytes, err := io.ReadAll(os.Stdin)
+	exitWithError(err)
 
 	params, err := functions.ParseInputParams(inputBytes)
 	exitWithError(err)
@@ -26,9 +27,11 @@ func main() {
 
 	// Configurar opciones del drawer
 	opts := drawers.DrawerOptions{
-		LabelWidthMm:  params.LabelWidth,
-		LabelHeightMm: params.LabelHeight,
-		Dpmm:          params.Dpmm,
+		LabelWidthMm:    params.LabelWidth,
+		LabelHeightMm:   params.LabelHeight,
+		Dpmm:            params.Dpmm,
+		LabelBackground: params.LabelBackground,
+		Resize:          params.Resize,
 	}
 
 	switch params.Formato {

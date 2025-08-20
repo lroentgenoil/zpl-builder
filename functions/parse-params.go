@@ -12,14 +12,15 @@ import (
 // ParseInputParams decodifica y convierte los datos de entrada
 func ParseInputParams(inputBytes []byte) (elements.FormattedParams, error) {
 	var raw elements.InputParams
-	var formatData elements.FormattedParams
 
-	initParams(&formatData)
+	var formatData elements.FormattedParams
 
 	err := json.Unmarshal(inputBytes, &raw)
 	if err != nil {
 		return elements.FormattedParams{}, err
 	}
+
+	raw = raw.WithDefaults()
 
 	formatData.LabelWidth, err = strconv.ParseFloat(raw.Ancho, 64)
 	if err != nil {
@@ -83,23 +84,19 @@ func ParseInputParams(inputBytes []byte) (elements.FormattedParams, error) {
 		formatData.UrlOutput = raw.UrlOutput
 	}
 
+	formatData.Resize, err = strconv.ParseBool(raw.Resize)
+	if err != nil {
+		return elements.FormattedParams{}, errors.New("error al convertir Resize")
+	}
+
+	formatData.LabelBackground, err = strconv.ParseBool(raw.LabelBackground)
+	if err != nil {
+		return elements.FormattedParams{}, errors.New("error al convertir LabelBackground")
+	}
+
 	formatData.ZPL = []byte(raw.ZPL)
 
-	return formatData, nil
-}
+	formatData = formatData.WithDefaults()
 
-func initParams(params *elements.FormattedParams) {
-	params.LabelWidth = 0
-	params.LabelHeight = 0
-	params.Dpmm = 0
-	params.Formato = "jpg"
-	params.Filas = 1
-	params.Columnas = 1
-	params.Mosaico = false
-	params.MarginX = 0
-	params.MarginY = 0
-	params.Chunk = 1000
-	params.Output = "binary"
-	params.UrlOutput = "./"
-	params.Comprimir = false
+	return formatData, nil
 }
