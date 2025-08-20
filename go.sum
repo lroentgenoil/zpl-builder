@@ -11,8 +11,8 @@ github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeN
 github.com/ingridhq/maxicode v1.4.0 h1:VV5GR0t+o0QN8OqdVFYKJQ2QC9o474OLzMBhlm/1Ud0=
 github.com/ingridhq/maxicode v1.4.0/go.mod h1:GLpBZPEHER1a3vNIRV5EbeBDy7XYanIQOWqesrwZpeo=
 github.com/jung-kurt/gofpdf v1.0.0/go.mod h1:7Id9E/uU8ce6rXgefFLlgrJj/GYY22cpxn+r32jIOes=
-github.com/lroentgenoil/zebrashMod v0.0.0-20250724185655-d423c49f4b18 h1:G8zc0UHVVmHKU8Cn1NZbaJByavzSc8uGAoyCryueqIo=
-github.com/lroentgenoil/zebrashMod v0.0.0-20250724185655-d423c49f4b18/go.mod h1:jqEW8hH3fDhLYvxQ/sksGg+uueX+e/5nGFq4C0Vok4c=
+github.com/lroentgenoil/zebrashMod v1.0.1 h1:Cip4RevHS5h6jbMCxYbr8jUy+PSRlzHNNHtNiDyXjys=
+github.com/lroentgenoil/zebrashMod v1.0.1/go.mod h1:jqEW8hH3fDhLYvxQ/sksGg+uueX+e/5nGFq4C0Vok4c=
 github.com/makiuchi-d/gozxing v0.1.1 h1:xxqijhoedi+/lZlhINteGbywIrewVdVv2wl9r5O9S1I=
 github.com/makiuchi-d/gozxing v0.1.1/go.mod h1:eRIHbOjX7QWxLIDJoQuMLhuXg9LAuw6znsUtRkNw9DU=
 github.com/phpdave11/gofpdf v1.4.3 h1:M/zHvS8FO3zh9tUd2RCOPEjyuVcs281FCyF22Qlz/IA=
